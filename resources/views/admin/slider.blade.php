@@ -12,7 +12,13 @@
     <!-- Sidebar Navidation Menus--><span class="heading mx-5">Main</span>
     <ul class="list-unstyled mx-5">
         <li class="active"><a href="/admin/dashboard"> <i class="icon-home"></i>Home </a></li>
-        <li><a href="{{url('category_view')}}"> <i class="icon-grid"></i>Category</a></li>
+        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
+                    class="icon-windows"></i> Category </a>
+            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li><a href="{{url('add_category')}}">Add Category</a></li>
+                <li><a href="{{url('category_view')}}">View Category</a></li>
+            </ul>
+        </li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
                     class="icon-windows"></i> Product </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
