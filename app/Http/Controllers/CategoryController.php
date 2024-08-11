@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\FileExists;
 
 class CategoryController extends Controller
 {
@@ -73,7 +75,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' =>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'meta_title' => 'required|string|max:255',
             'meta_descrip' => 'required|string|max:255',
             'meta_keywords' => 'required|string|max:255',
@@ -82,11 +84,17 @@ class CategoryController extends Controller
         $cat->name = $request->name;
         $cat->slug = $request->slug;
         $cat->description = $request->description;
-        $cat->status = $request->status ?? 0;
-        $cat->popular = $request->popular ?? 0;
+        $cat->status = ($request->status) ==TRUE ?'1':'0';
+        $cat->popular = ($request->popular) ==TRUE ?'1':'0';
 
         // Handle the image upload
         if ($request->hasFile('image')) {
+            $path = public_path('pro/' . $cat->image);
+
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('pro'), $imageName);
             $cat->image = $imageName;
@@ -102,6 +110,16 @@ class CategoryController extends Controller
 
         // Redirect back with a success message
         return back()->withSuccess('Product Category Updated Successfully!!!');
+    }
+
+    public function delete_category($id)
+    {
+        $category=Category::find($id);
+        $category->delete();
+        return back()->withSuccess('Category Deleted Successfully!!!');
+        return redirect()->back();
+
+
     }
 
 
