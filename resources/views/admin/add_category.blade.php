@@ -15,6 +15,18 @@
 
     
 <div class="container mt-5">
+        {{-- Toastr Message --}}
+
+
+        @if($message=Session::get('success'))
+        <div class="alert alert-success alert-block">
+          <strong>{{$message}}</strong>
+        </div>
+    
+    
+        @endif
+    
+        {{-- end --}}
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form action="{{ url('store_category') }}" method="POST" enctype="multipart/form-data">

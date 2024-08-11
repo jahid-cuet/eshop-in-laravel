@@ -50,6 +50,7 @@ class CategoryController extends Controller
         $cat->save();
 
         // Redirect back with a success message
-        return redirect()->route('add_category')->with('success', 'Post created successfully.');
+        return back()->withSuccess('Product Category Created Successfully!!!');
+        // return redirect()->route('add_category')->with('success', 'Post created successfully.');
     }
 }
