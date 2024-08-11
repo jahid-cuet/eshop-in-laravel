@@ -115,6 +115,14 @@ class CategoryController extends Controller
     public function delete_category($id)
     {
         $category=Category::find($id);
+
+        if ($category->image) {
+            $path = public_path('pro/' . $category->image);
+    
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+        }
         $category->delete();
         return back()->withSuccess('Category Deleted Successfully!!!');
         return redirect()->back();
