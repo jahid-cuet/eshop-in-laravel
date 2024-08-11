@@ -28,5 +28,6 @@ require __DIR__.'/auth.php';
     Route::get('admin/dashboard',[AdminController::class,'index']);
     Route::get('add_category',[CategoryController::class,'add_category'])->name('add_category');
     Route::post('store_category',[CategoryController::class,'store_category'])->name('store_category');
+    Route::get('category_view',[CategoryController::class,'category_view'])->name('category_view');
   
 });

@@ -51,6 +51,13 @@ class CategoryController extends Controller
 
         // Redirect back with a success message
         return back()->withSuccess('Product Category Created Successfully!!!');
-        // return redirect()->route('add_category')->with('success', 'Post created successfully.');
     }
+
+    public function category_view()
+    {
+        $categories=Category::all();
+        return view('admin.category_view',compact('categories'));
+    }
+
+
 }
