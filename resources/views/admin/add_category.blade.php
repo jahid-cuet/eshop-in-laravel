@@ -17,20 +17,28 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 class="mb-4">Create a New Post</h1>
             <form action="{{ url('store_category') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+                 @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug:</label>
-                    <input type="text" class="form-control" id="slug" name="slug" required>
+                    <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required>
+                    @error('slug')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" id="description" name="description" required></textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" required></textarea>
+                    @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="status" name="status" value="1">
@@ -42,19 +50,31 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Image:</label>
-                    <input type="file" class="form-control-file" id="image" name="image">
+                    <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image" required>
+                    @error('image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
                 <div class="form-group">
                     <label for="meta_title">Meta Title:</label>
-                    <input type="text" class="form-control" id="meta_title" name="meta_title" required>
+                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror" id="meta_title" name="meta_title" required>
+                    @error('meta_title')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
                 <div class="form-group">
                     <label for="meta_descrip">Meta Description:</label>
-                    <input type="text" class="form-control" id="meta_descrip" name="meta_descrip" required>
+                    <input type="text" class="form-control @error('meta_descrip') is-invalid @enderror" id="meta_descrip" name="meta_descrip" required>
+                    @error('meta_descrip')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
                 <div class="form-group">
                     <label for="meta_keywords">Meta Keywords:</label>
-                    <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" required>
+                    <input type="text" class="form-control @error('meta_keywords') is-invalid @enderror" id="meta_keywords" name="meta_keywords" required>
+                    @error('meta_keywords')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Add Category</button>
             </form>

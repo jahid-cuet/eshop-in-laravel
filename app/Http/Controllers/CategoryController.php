@@ -20,7 +20,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'meta_title' => 'required|string|max:255',
             'meta_descrip' => 'required|string|max:255',
             'meta_keywords' => 'required|string|max:255',
