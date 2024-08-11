@@ -47,22 +47,25 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{$category->description}}" required></textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"  required>{{$category->description}}</textarea>
                     @error('description')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
                 </div>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="status" name="status" value="1">
+                    <input type="checkbox" class="form-check-input" id="status" name="status" {{$category->status =="1"? 'checked':''}}>
                     <label class="form-check-label" for="status">Status</label>
                 </div>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="popular" name="popular" value="1">
+                    <input type="checkbox" class="form-check-input" id="popular" name="popular" {{$category->popular =="1"? 'checked':''}}>
                     <label class="form-check-label" for="popular">Popular</label>
                 </div>
+                @if($category->image)
+                <img height="100" width="100" src="/pro/{{$category->image}}" alt="image">
+                @endif
                 <div class="form-group">
                     <label for="image">Image:</label>
-                    <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image" value="{{$category->image}}"required>
+                    <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image" value="{{$category->image}}">
                     @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

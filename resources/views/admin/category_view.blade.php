@@ -11,6 +11,19 @@
 
 <div class="d-flex align-items-stretch">
       @include('admin.slider')
+      <div class="container mt-5">
+        {{-- Toastr Message --}}
+
+
+        @if($message=Session::get('success'))
+        <div class="alert alert-success alert-block">
+          <strong>{{$message}}</strong>
+        </div>
+    
+    
+        @endif
+    
+        {{-- end --}}
 
       <div class="ml-5">
         <h1>Category</h1>
@@ -51,10 +64,10 @@
               <td> 
                 <a href="{{ url('edit_category', $category->id) }}" class="btn btn-warning">Edit</a>
               </td>
-    
-              <td >
-                <a href="" class="btn btn-danger">Delete</a>
+              <td>
+                <a href="{{url('delete_category',$category->id)}}" class="btn btn-danger">Delete</a>
               </td>
+              
     
             </tr>
             @endforeach 

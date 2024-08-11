@@ -31,5 +31,6 @@ require __DIR__.'/auth.php';
     Route::get('category_view',[CategoryController::class,'category_view'])->name('category_view');
     Route::get('edit_category/{id}',[CategoryController::class,'edit_category'])->name('edit_category');
     route::post('update_category/{id}',[CategoryController::class,'update_category'])->middleware(['auth','admin']);
+    route::get('delete_category/{id}',[AdminController::class,'delete_category'])->middleware(['auth','admin']);
   
 });
