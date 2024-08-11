@@ -29,5 +29,7 @@ require __DIR__.'/auth.php';
     Route::get('add_category',[CategoryController::class,'add_category'])->name('add_category');
     Route::post('store_category',[CategoryController::class,'store_category'])->name('store_category');
     Route::get('category_view',[CategoryController::class,'category_view'])->name('category_view');
+    Route::get('edit_category/{id}',[CategoryController::class,'edit_category'])->name('edit_category');
+    route::post('update_category/{id}',[CategoryController::class,'update_category'])->middleware(['auth','admin']);
   
 });

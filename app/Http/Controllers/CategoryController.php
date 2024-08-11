@@ -60,4 +60,49 @@ class CategoryController extends Controller
     }
 
 
+    public function edit_category($id)
+    {
+        $category=Category::find($id);
+        return view('admin.edit_category',compact('category'));
+    }
+
+    public function update_category(Request $request,$id)
+    {
+        // Validate the form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'meta_title' => 'required|string|max:255',
+            'meta_descrip' => 'required|string|max:255',
+            'meta_keywords' => 'required|string|max:255',
+        ]);
+        $cat=Category::find($id);
+        $cat->name = $request->name;
+        $cat->slug = $request->slug;
+        $cat->description = $request->description;
+        $cat->status = $request->status ?? 0;
+        $cat->popular = $request->popular ?? 0;
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('pro'), $imageName);
+            $cat->image = $imageName;
+        }
+
+        // Add meta data
+        $cat->meta_title = $request->meta_title;
+        $cat->meta_descrip = $request->meta_descrip;
+        $cat->meta_keywords = $request->meta_keywords;
+
+        // Save the cat to the database
+        $cat->save();
+
+        // Redirect back with a success message
+        return back()->withSuccess('Product Category Updated Successfully!!!');
+    }
+
+
 }

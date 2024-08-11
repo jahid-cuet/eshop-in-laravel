@@ -49,7 +49,7 @@
               </td>
     
               <td> 
-                <a href="" class="btn btn-warning">Edit</a>
+                <a href="{{ url('edit_category', $category->id) }}" class="btn btn-warning">Edit</a>
               </td>
     
               <td >
