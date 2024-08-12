@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,8 @@ require __DIR__.'/auth.php';
 
     Route::middleware('auth','admin')->group(function () {
     Route::get('admin/dashboard',[AdminController::class,'index']);
+
+    // Category Routes
     Route::get('add_category',[CategoryController::class,'add_category'])->name('add_category');
     Route::post('store_category',[CategoryController::class,'store_category'])->name('store_category');
     Route::get('category_view',[CategoryController::class,'category_view'])->name('category_view');
@@ -33,4 +36,10 @@ require __DIR__.'/auth.php';
     route::post('update_category/{id}',[CategoryController::class,'update_category'])->middleware(['auth','admin']);
     route::get('delete_category/{id}',[CategoryController::class,'delete_category'])->middleware(['auth','admin']);
   
+    // Products Routes
+
+    Route::get('add_product',[ProductController::class,'add_product'])->name('add_product');
+    Route::post('store_product',[ProductController::class,'store_product'])->name('store_product');
+    // Route::get('show_product',[ProductController::class,'show_product'])->name('show_product');
+    
 });
