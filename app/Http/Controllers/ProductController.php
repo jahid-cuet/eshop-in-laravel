@@ -64,4 +64,10 @@ class ProductController extends Controller
         // Redirect with success message
         return redirect()->back()->with('success', 'Product added successfully');
     }
+
+    public function show_product()
+    {
+        $products=Product::all();
+        return view('admin.show_product',compact('products'));
+    }
 }

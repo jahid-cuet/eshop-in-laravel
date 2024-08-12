@@ -20,4 +20,9 @@ class Category extends Model
         'meta_descrip',
         
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'cate_id', 'id');
+    }
 }

@@ -40,6 +40,6 @@ require __DIR__.'/auth.php';
 
     Route::get('add_product',[ProductController::class,'add_product'])->name('add_product');
     Route::post('store_product',[ProductController::class,'store_product'])->name('store_product');
-    // Route::get('show_product',[ProductController::class,'show_product'])->name('show_product');
+    Route::get('show_product',[ProductController::class,'show_product'])->name('show_product');
     
 });
