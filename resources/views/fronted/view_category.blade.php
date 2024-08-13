@@ -17,20 +17,22 @@
   <div class="container mt-4">
     <h2 class='mb-4'>{{$category->name}}</h2>
     <div class="row">
-      <div class="owl-carousel owl-theme">
+      {{-- <div class="owl-carousel owl-theme"> --}}
         @foreach ($products as $product)
-          <div class="item">
+          <div class="col-md-3">
             <div class="card h-100" style="width: 14rem;">
+              <a class="text-decoration-none" href="{{ url('product_detail', $product->id) }}">
               <img src="/pro/{{$product->image}}" class="card-img-top" style="height: 100px; width: auto;" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{$product->name}}</h5>
                <span class="float-start">{{$product->selling_price}}</span>
                <span class="float-end"><s>{{$product->original_price}}</s></span>
               </div>
+            </a>
             </div>
           </div>
         @endforeach
-      </div>
+      {{-- </div> --}}
     </div>
   </div>
 
@@ -45,23 +47,6 @@
   <!-- OwlCarousel JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script>
-    $('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:4
-        }
-    }
-})
-  </script>
+ 
 </body>
 </html>

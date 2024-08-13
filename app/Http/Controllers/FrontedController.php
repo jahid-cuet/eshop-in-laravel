@@ -36,4 +36,11 @@ class FrontedController extends Controller
         }
 
     }
+
+    public function product_detail($id)
+    {
+        $product=Product::find($id);
+        return view('fronted.product_detail',compact('product'));
+
+    }
 }
