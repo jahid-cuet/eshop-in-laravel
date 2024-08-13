@@ -22,4 +22,18 @@ class FrontedController extends Controller
         $categories=Category::where('status','0')->take(15)->get();
         return view('fronted.front_category',compact('categories'));
     }
+
+    public function view_category($slug)
+    {
+        if(Category::where('slug',$slug)->exists())
+        {
+            $category=Category::where('slug',$slug)->first();
+            $products=Product::where('cate_id',$category->id)->get();
+            return view('fronted.view_category',compact('category','products'));
+        }
+        else{
+            return back()->withSuccess('Slug Does not Exist !!!');
+        }
+
+    }
 }

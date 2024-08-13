@@ -13,13 +13,9 @@
 <body>
 
   @include('fronted.nav')
-  
-  <div class="container">
-    @include('fronted.slider')
-  </div>
 
   <div class="container mt-4">
-    <h2 class='mb-4'>Featured Products</h2>
+    <h2 class='mb-4'>{{$category->name}}</h2>
     <div class="row">
       <div class="owl-carousel owl-theme">
         @foreach ($products as $product)
@@ -38,28 +34,6 @@
     </div>
   </div>
 
-{{-- THis is for Category --}}
-
-  <div class="container mt-4">
-    <h2 class='mb-4'>Trending Category</h2>
-    <div class="row">
-      <div class="owl-carousel owl-theme">
-        @foreach ($categories as $category)
-          <div class="item">
-            <a class="text-decoration-none" href="{{ url('view_category', $category->slug) }}">
-            <div class="card h-100" style="width: 14rem;">
-              <img src="/pro/{{$category->image}}" class="card-img-top" style="height: 100px; width: auto;" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{$category->name}}</h5>
-                <p>{{$category->description}}</p>
-              </div>
-            </div>
-          </a>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
 
 <!-- jQuery CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

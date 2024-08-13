@@ -21,6 +21,7 @@
       <div class="owl-carousel owl-theme">
         @foreach ($categories as $category)
           <div class="item">
+            <a class="text-decoration-none" href="{{ url('view_category', $category->slug) }}">
             <div class="card h-100" style="width: 14rem;">
               <img src="/pro/{{ $category->image}}" class="card-img-top" style="height: 100px; width: auto;" alt="...">
               <div class="card-body">
@@ -29,6 +30,7 @@
                
               </div>
             </div>
+          </a>
           </div>
         @endforeach
       </div>
