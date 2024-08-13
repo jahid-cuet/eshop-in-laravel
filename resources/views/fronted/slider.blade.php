@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-8"> <!-- Adjust the width using Bootstrap's grid system -->
+        <div class="col-md-6"> <!-- Adjust the width using Bootstrap's grid system -->
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">

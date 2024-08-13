@@ -137,7 +137,7 @@
                 </div>
                 <div class="form-group">
                     <label for="meta_description">Meta Description:</label>
-                    <input type="text" class="form-control @error('meta_descrip') is-invalid @enderror" id="meta_description" name="meta_description" required>
+                    <input type="text" class="form-control @error('meta_description') is-invalid @enderror" id="meta_description" name="meta_description" required>
                     @error('meta_description')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

@@ -2,17 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontedController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('fronted.index');
-});
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [FrontedController::class, 'home']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

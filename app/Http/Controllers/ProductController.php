@@ -58,7 +58,7 @@ class ProductController extends Controller
             $product->image = $imageName;
         }
         $product->meta_title = $request->meta_title;
-        $product->meta_description = $request->meta_descrip;
+        $product->meta_description = $request->meta_description;
         $product->meta_keywords = $request->meta_keywords;
         $product->save();
 
