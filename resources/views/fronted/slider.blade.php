@@ -3,14 +3,19 @@
         <div class="col-md-6"> <!-- Adjust the width using Bootstrap's grid system -->
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
+
                     <div class="carousel-item active">
-                        <img src="https://tse3.mm.bing.net/th?id=OIP.YDtacGCl4AYq8o-xbj3gxQHaFx&pid=Api&P=0&h=220" class="d-block w-100" alt="Image 1">
+                        <img src="https://www.webmarketing-actions.fr/wp-content/uploads/2020/03/site-ecommerce.jpg" class="d-block w-100" alt="Image 2">
+                    </div>
+                    <div class="carousel-item ">
+                        <img src="https://iexperto.io/wp-content/uploads/2022/04/eCommerce-Website-Design.jpg" class="d-block w-100" alt="Image 1">
+                    </div>
+                   
+                    <div class="carousel-item">
+                        <img src="https://www.akunatech.com/blog/wp-content/uploads/2018/05/ecommerce-services.jpg" class="d-block w-100" alt="Image 3">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://tse3.mm.bing.net/th?id=OIP.YDtacGCl4AYq8o-xbj3gxQHaFx&pid=Api&P=0&h=220" class="d-block w-100" alt="Image 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://tse3.mm.bing.net/th?id=OIP.YDtacGCl4AYq8o-xbj3gxQHaFx&pid=Api&P=0&h=220" class="d-block w-100" alt="Image 3">
+                        <img src="https://codbel.com/wp-content/uploads/2022/03/ecommerce.jpeg" class="d-block w-100" alt="Image 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

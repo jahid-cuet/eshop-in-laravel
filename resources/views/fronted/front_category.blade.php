@@ -14,43 +14,19 @@
 
   @include('fronted.nav')
   
-  <div class="container">
-    @include('fronted.slider')
-  </div>
 
   <div class="container mt-4">
-    <h2 class='mb-4'>Featured Products</h2>
-    <div class="row">
-      <div class="owl-carousel owl-theme">
-        @foreach ($products as $product)
-          <div class="item">
-            <div class="card h-100" style="width: 14rem;">
-              <img src="/pro/{{$product->image}}" class="card-img-top" style="height: 100px; width: auto;" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{$product->name}}</h5>
-               <span class="float-start">{{$product->selling_price}}</span>
-               <span class="float-end"><s>{{$product->original_price}}</s></span>
-              </div>
-            </div>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-
-{{-- THis is for Category --}}
-
-  <div class="container mt-4">
-    <h2 class='mb-4'>Trending Category</h2>
+    <h2 class='mb-4'>All Categories</h2>
     <div class="row">
       <div class="owl-carousel owl-theme">
         @foreach ($categories as $category)
           <div class="item">
             <div class="card h-100" style="width: 14rem;">
-              <img src="/pro/{{$category->image}}" class="card-img-top" style="height: 100px; width: auto;" alt="...">
+              <img src="/pro/{{ $category->image}}" class="card-img-top" style="height: 100px; width: auto;" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{$category->name}}</h5>
-                <p>{{$category->description}}</p>
+               <span class="float-start">{{$category->description}}</span>
+               
               </div>
             </div>
           </div>
@@ -58,6 +34,8 @@
       </div>
     </div>
   </div>
+
+
 
 <!-- jQuery CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
