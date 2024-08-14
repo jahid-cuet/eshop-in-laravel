@@ -14,24 +14,24 @@
 
   @include('fronted.nav')
 
-  <div class="container mt-4">
-    <div class="row">
-          <div class="col-md-3">
-            <div class="card h-100" style="width: 14rem;">
-              <img src="/pro/{{$product->image}}" class="card-img-top" style="height: 100px; width: auto;" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{$product->name}}</h5>
-                <p>{{$product->quantity}}</p>
-                <p>{{$product->description}}</p>
-                <p>{{$product->meta_title}}</p>
-               <span class="float-start">{{$product->selling_price}}</span>
-               <span class="float-end"><s>{{$product->original_price}}</s></span>
-              </div>
-            </div>
-          </div>
+  <div class="container mt-4 d-flex justify-content-center">
+    <div class="card" style="width: 66.67%; max-width: 600px;">
+      <img src="/pro/{{$product->image}}" class="card-img-top" style="height: 278px; width: auto;" alt="...">
+      <div class="card-body">
+        <h2 class="card-title">{{$product->name}}</h2>
+        <span class="float-start">Original Price : {{$product->original_price}}</span>
+        <span class="float-end">Selling Price : <s>{{$product->selling_price}}</s></span>
+        <br>
+        <p class='mt-2'>{{$product->description}}</p>
+        <label class='badge bg-danger trending_tag mb-2' style="font-size: 16px ">{{ $product->trending == '1' ? 'Trending' : '' }}</label>
+        <p> Quantity : {{$product->quantity}}</p>
+        <div class="d-flex justify-content-center">
+        <a class='btn btn-primary m-4'>Add to Wishlist</a>
+        <a class='btn btn-primary m-4'>Add to cart</a>
+      </div>
+      </div>
     </div>
   </div>
-
 
 <!-- jQuery CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
