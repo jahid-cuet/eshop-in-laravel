@@ -10,7 +10,27 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- External OwlCarousel CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .quantity-control {
+      display: flex;
+      align-items: center;
+    }
+    .quantity-control button {
+      border: none;
+      background: none;
+      font-size: 20px;
+    }
+    .quantity-control input {
+      width: 50px;
+      text-align: center;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      padding: .375rem .75rem;
+      margin: 0 10px;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,9 +46,17 @@
         <br>
         <p class='mt-2'>{{$product->description}}</p>
         <label class='badge bg-danger trending_tag mb-2' style="font-size: 16px ">{{ $product->trending == '1' ? 'Trending' : '' }}</label>
-        <p> Quantity : {{$product->quantity}}</p>
+        
+        {{-- <p> Quantity : {{$product->quantity}}</p> --}}
+        <div class="quantity-control mt-3 d-flex align-items-center">
+          <button class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
+          <input type="text" id="quantity" class="form-control text-center mx-2" value="{{$product->quantity}}" readonly style="max-width: 60px;">
+          <button class="btn btn-outline-secondary" onclick="incrementQuantity()">+</button>
+        </div>
+
+
         <div class="d-flex justify-content-center">
-        <a  class="btn btn-secondary m-4"><i class="fas fa-heart"></i> Add to Wishlist</a>
+        <a  class="btn btn-secondary m-4">Add to Wishlist<i class="fas fa-heart mx-1"></i> </a>
         <a class="btn btn-primary m-4">Add to cart<i class="fa-solid fa-cart-shopping mx-1"></i> </a>
       </div>
       </div>
@@ -44,7 +72,28 @@
   
   <!-- OwlCarousel JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  {{-- jquery Part start --}}
+  <script>
+    function incrementQuantity() {
+      let quantityInput = document.getElementById('quantity');
+      let currentValue = parseInt(quantityInput.value);
+      if (currentValue < 10) {
+        quantityInput.value = currentValue + 1;
+      }
+    }
 
+    function decrementQuantity() {
+      let quantityInput = document.getElementById('quantity');
+      let currentValue = parseInt(quantityInput.value);
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    }
+  </script>
+  {{-- jquery Part End--}}
  
 </body>
 </html>
