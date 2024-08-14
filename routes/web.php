@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontedController;
 use App\Http\Controllers\ProductController;
@@ -15,6 +16,9 @@ Route::get('view_category/{slug}', [FrontedController::class, 'view_category'])-
 Route::get('product_detail/{id}', [FrontedController::class, 'product_detail'])->name('product_detail');
 
 
+// For User
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -23,7 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+   
+    Route::post('/add-to-cart',[CartController::class,'addProduct']);
+   
 });
+
+
+
 
 require __DIR__.'/auth.php';
 
