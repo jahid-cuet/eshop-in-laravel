@@ -38,7 +38,32 @@ class CartController extends Controller
         }
         else
         {
-            return response()->json(['status' => 'User not authenticated'], 401); // Unauthorized status code
+            return response()->json(['status' => 'Login to Continue'], 401); // Unauthorized status code
         }
+    }
+    
+    public function my_cart()
+    {
+        $cartitems=Cart::where('user_id',Auth::id())->get();
+        return view('fronted.my_cart',compact('cartitems'));
+    }
+
+    public function deleteProduct(Request $request)
+    {   
+        if (Auth::check())
+        {
+        $prod_id=$request->input('product_id');
+        if(Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->exists())
+        {
+            $cartItem=Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->first();
+            $cartItem->delete();
+            return response()->json(['status' => 'Cart Deleted successfully!!!'], 200);
+        }
+        }
+        else
+        {
+            return response()->json(['status' => 'Login to Continue'], 401); // Unauthorized status code
+        }
+
     }
 }

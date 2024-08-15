@@ -17,18 +17,24 @@ Route::get('product_detail/{id}', [FrontedController::class, 'product_detail'])-
 
 
 // For User
+Route::post('/add-to-cart',[CartController::class,'addProduct']);
+Route::post('/delete-cart-item', [CartController::class, 'deleteProduct'])->name('cart.delete');
+
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
    
-    Route::post('/add-to-cart',[CartController::class,'addProduct']);
+    Route::get('/my_cart',[CartController::class,'my_cart']);
    
 });
 

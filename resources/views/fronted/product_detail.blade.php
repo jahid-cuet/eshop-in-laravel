@@ -32,7 +32,7 @@
                 <p class="fw-bold">Quantity<br></p>
                 <div class="quantity-control mt-3 d-flex align-items-center">
                     <button class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
-                    <input type="text" id="quantity" class="form-control text-center mx-2" value="{{$product->quantity}}" readonly style="max-width: 60px;">
+                    <input type="text" id="quantity" class="form-control text-center mx-2" value="1" readonly style="max-width: 60px;">
                     <button class="btn btn-outline-secondary" onclick="incrementQuantity()">+</button>
                 </div>
 
@@ -80,7 +80,7 @@
                         alert('Product added to cart successfully.');
                     },
                     error: function(xhr, status, error) {
-                        alert('An error occurred: ' + error);
+                        alert('Login to continue');
                     }
                 });
             });

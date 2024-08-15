@@ -12,6 +12,11 @@
                 <li class="nav-item">
                     <a class="nav-link active"  href="{{ url('/front_category') }}">Category</a>
                 </li>
+               @auth
+               <li class="nav-item">
+                <a class="nav-link active"  href="{{ url('/my_cart') }}">My Cart</a>
+            </li>
+               @endauth
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                
