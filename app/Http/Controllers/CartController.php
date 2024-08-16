@@ -66,4 +66,28 @@ class CartController extends Controller
         }
 
     }
+
+
+    public function update_cart(Request $request)
+    {   
+        $prod_id = $request->input('prod_id');
+        $prod_qty = $request->input('prod_qty');
+    
+        if (Auth::check()) {
+            if (Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists()) {
+                $cartItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+                $cartItem->prod_qty = $prod_qty;
+                $cartItem->save();
+                return response()->json(['status' => 'Quantity Updated!!!'], 200);
+            }
+        } else {
+            return response()->json(['status' => 'Login to Continue'], 401); // Unauthorized status code
+        }
+    }
+    
+    
+    
+
+
+
 }

@@ -19,6 +19,8 @@ Route::get('product_detail/{id}', [FrontedController::class, 'product_detail'])-
 // For User
 Route::post('/add-to-cart',[CartController::class,'addProduct']);
 Route::post('/delete-cart-item', [CartController::class, 'deleteProduct'])->name('cart.delete');
+Route::post('/update_cart', [CartController::class, 'update_cart']);
+
 
 
 

@@ -25,11 +25,17 @@
             <tr>
               <th scope="col">Image</th>
               <th scope="col">Product Name</th>
+              <th scope="col">Total Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
+
+            @php
+                $total=0;
+            @endphp
+
              @foreach ($cartitems as $cart)
             <tr class="ml-2 p-2">
               <td>
@@ -38,22 +44,38 @@
               <td>
                 <a>{{ $cart->products->name }}</a>
                </td>
+              <td>
+                <a>${{ $cart->products->selling_price }}</a>
+               </td>
                <td>
                 <input type="hidden" value="{{$cart->prod_id}}" class="prod_id">
                 <div class="quantity-control mt-3 d-flex align-items-center">
-                  <button class="btn btn-outline-secondary" onclick="decrementQuantity(this)">-</button>
+                  <button class="btn btn-outline-secondary changeQuantity decrement">-</button>
                   <input type="text" class="quantity form-control text-center mx-2" value="{{$cart->prod_qty}}" readonly style="max-width: 60px;">
-                  <button class="btn btn-outline-secondary" onclick="incrementQuantity(this)">+</button>
+                  <button class="btn btn-outline-secondary changeQuantity increment">+</button>
                 </div>
                </td>
                <td>
                   <a class='btn btn-danger mt-3 delete-cart-item'><i class='fa fa-trash mx-1'></i>Remove</a>
                </td>
             </tr>
+
+            @php
+                $total+=$cart->products->selling_price*$cart->prod_qty
+            @endphp
+
             @endforeach 
+           
+
           </tbody>
+          
         </table>
+        <div class="card-footer">
+            <h4 class='mt-4'>Total Price : ${{$total}}</h4>
+            <button class='btn btn-outline-success float-end mb-4'>Proceed to Checkout</button>
+        </div>
     </div>
+
 
     <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -65,23 +87,52 @@
     
     <!-- Custom JavaScript -->
     <script>
-        function incrementQuantity(button) {
-            let quantityInput = button.parentElement.querySelector('.quantity');
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue < 10) {
-                quantityInput.value = currentValue + 1;
-            }
-        }
-      
-        function decrementQuantity(button) {
-            let quantityInput = button.parentElement.querySelector('.quantity');
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) {
-                quantityInput.value = currentValue - 1;
-            }
-        }
-
         $(document).ready(function() {
+            $('.increment').click(function() {
+                let quantityInput = $(this).siblings('.quantity');
+                let currentValue = parseInt(quantityInput.val());
+                if (currentValue < 10) {
+                    quantityInput.val(currentValue + 1);
+                    updateQuantity(this, currentValue + 1);
+                }
+            });
+
+            $('.decrement').click(function() {
+                let quantityInput = $(this).siblings('.quantity');
+                let currentValue = parseInt(quantityInput.val());
+                if (currentValue > 1) {
+                    quantityInput.val(currentValue - 1);
+                    updateQuantity(this, currentValue - 1);
+                }
+            });
+
+            function updateQuantity(button, newQuantity) {
+                var prod_id = $(button).closest('tr').find('.prod_id').val();
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    method: "POST",
+                    url: "update_cart",
+                    data: {
+                        'prod_id': prod_id,
+                        'prod_qty': newQuantity,
+                    },
+                    success: function(response) {
+                        console.log("Success:", response); // Debugging
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", xhr.responseText); // Debugging
+                    }
+                });
+            }
+
+            // This is For Delete Cart
             $('.delete-cart-item').click(function() {
                 var button = $(this);
                 var productId = button.closest('tr').find('.prod_id').val();
