@@ -72,7 +72,7 @@
         </table>
         <div class="card-footer">
             <h4 class='mt-4'>Total Price : ${{$total}}</h4>
-            <button class='btn btn-outline-success float-end mb-4'>Proceed to Checkout</button>
+            <a href="checkout" class='btn btn-outline-success float-end mb-4'>Proceed to Checkout</a>
         </div>
     </div>
 
