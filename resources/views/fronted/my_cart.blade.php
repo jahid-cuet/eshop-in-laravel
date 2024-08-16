@@ -25,7 +25,7 @@
             <tr>
               <th scope="col">Image</th>
               <th scope="col">Product Name</th>
-              <th scope="col">Total Price</th>
+              <th scope="col">Selling Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Action</th>
             </tr>
@@ -49,20 +49,26 @@
                </td>
                <td>
                 <input type="hidden" value="{{$cart->prod_id}}" class="prod_id">
+                @if ($cart->products->quantity > $cart->prod_qty)
                 <div class="quantity-control mt-3 d-flex align-items-center">
-                  <button class="btn btn-outline-secondary changeQuantity decrement">-</button>
-                  <input type="text" class="quantity form-control text-center mx-2" value="{{$cart->prod_qty}}" readonly style="max-width: 60px;">
-                  <button class="btn btn-outline-secondary changeQuantity increment">+</button>
-                </div>
+                    <button class="btn btn-outline-secondary changeQuantity decrement">-</button>
+                    <input type="text" class="quantity form-control text-center mx-2" value="{{$cart->prod_qty}}" readonly style="max-width: 60px;">
+                    <button class="btn btn-outline-secondary changeQuantity increment">+</button>
+                  </div>
+                 
+                  @php  $total+=$cart->products->selling_price*$cart->prod_qty @endphp
+             
+                @else
+                    <h5>Out of Stock</h5>
+                @endif
+               
                </td>
                <td>
                   <a class='btn btn-danger mt-3 delete-cart-item'><i class='fa fa-trash mx-1'></i>Remove</a>
                </td>
             </tr>
 
-            @php
-                $total+=$cart->products->selling_price*$cart->prod_qty
-            @endphp
+            
 
             @endforeach 
            

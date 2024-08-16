@@ -22,13 +22,21 @@
             <img src="/pro/{{$product->image}}" class="card-img-top" style="height: 278px; width: auto;" alt="...">
             <div class="card-body">
                 <h2 class="card-title">{{$product->name}}</h2>
-                <span class="float-start">Original Price : {{$product->original_price}}</span>
-                <span class="float-end">Selling Price : <s>{{$product->selling_price}}</s></span>
+                <span class="float-start">Selling Price : {{$product->selling_price}}</span>
+                <span class="float-end">Original Price : <s>{{$product->original_price}}</s></span>
+               
+                
                 <br>
                 <p class='mt-2'>{{$product->description}}</p>
                 <label class='badge bg-danger trending_tag mb-2' style="font-size: 16px ">{{ $product->trending == '1' ? 'Trending' : '' }}</label>
                 
                 <input type="hidden" value="{{$product->id}}" class="prod_id">
+               
+                @if ($product->quantity>0)
+                <label class="badge bg-success">In stock</label>
+                @else
+                <label class="badge bg-warning">Out of stock</label>
+                @endif
                 <p class="fw-bold">Quantity<br></p>
                 <div class="quantity-control mt-3 d-flex align-items-center">
                     <button class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
@@ -37,7 +45,10 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
+                    @if ($product->quantity>0)
                     <a class="btn btn-primary m-4 addToCartBtn">Add to cart<i class="fa-solid fa-cart-shopping mx-1"></i></a>
+                    @endif
+                  
                     <a class="btn btn-secondary m-4">Add to Wishlist<i class="fas fa-heart mx-1"></i></a>
                 </div>
             </div>

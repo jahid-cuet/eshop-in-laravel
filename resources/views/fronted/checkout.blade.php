@@ -14,6 +14,7 @@
 
   @include('fronted.nav')
   <div class="container mt-5">
+    <form action="{{url('place-order')}}" method="POST">
     <div class="row">
         <!-- Card 1: Basic Details Form -->
         <div class="col-md-6">
@@ -22,7 +23,7 @@
                     Basic Details
                 </div>
                 <div class="card-body">
-                    <form>
+                    
                         <div class="form-row d-flex gap-2">
                             <div class="form-group col-md-6">
                                 <label for="firstName">First Name</label>
@@ -30,7 +31,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                <input type="text" class="form-control" id="lastName" name='lname' placeholder="Last Name">
                             </div>
                         </div>
                         <div class="form-row d-flex gap-2">
@@ -40,41 +41,40 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="phoneNumber">Phone Number</label>
-                                <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                                <input type="text" class="form-control" id="phoneNumber" name='phone'  placeholder="Phone Number">
                             </div>
                         </div>
                         <div class="form-row d-flex gap-2">
                             <div class="form-group col-md-6">
                                 <label for="address1">Address 1</label>
-                                <input type="text" class="form-control" id="address1" placeholder="Address 1">
+                                <input type="text" class="form-control" id="address1" name='address1' placeholder="Address 1">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="address2">Address 2</label>
-                                <input type="text" class="form-control" id="address2" placeholder="Address 2">
+                                <input type="text" class="form-control" id="address2"  name='address2' placeholder="Address 2">
                             </div>
                         </div>
                         <div class="form-row d-flex gap-2">
                             <div class="form-group col-md-6">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" id="city" placeholder="City">
+                                <input type="text" class="form-control" id="city"  name='city' placeholder="City">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="state">State</label>
-                                <input type="text" class="form-control" id="state" placeholder="State">
+                                <input type="text" class="form-control" id="state"  name="state" placeholder="State">
                             </div>
                         </div>
                         <div class="form-row d-flex gap-2">
                             <div class="form-group col-md-6">
                                 <label for="country">Country</label>
-                                <input type="text" class="form-control" id="country" placeholder="Country">
+                                <input type="text" class="form-control" id="country" name="country" placeholder="Country">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="pinCode">Pin Code</label>
-                                <input type="text" class="form-control" id="pinCode" placeholder="Pin Code">
+                                <input type="text" class="form-control" id="pincode"  name="pinCode" placeholder="Pin Code">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                    </form>
+                       
                 </div>
             </div>
         </div>
@@ -108,10 +108,15 @@
                             
                         </tbody>
                     </table>
+                    <button type="submit" class="btn btn-primary">Place Order</button>
                 </div>
+                
             </div>
+            
         </div>
     </div>
+    
+</form>
 </div>
 
 

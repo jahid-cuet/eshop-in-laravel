@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
    
     Route::get('/my_cart',[CartController::class,'my_cart']);
     Route::get('/checkout',[CheckoutController::class,'checkout']);
+    Route::get('/place-order',[CheckoutController::class,'placeorder']);
    
 });
 
