@@ -14,109 +14,97 @@
 
   @include('fronted.nav')
   <div class="container mt-5">
-    <form action="{{url('place-order')}}" method="POST">
-    <div class="row">
-        <!-- Card 1: Basic Details Form -->
-        <div class="col-md-6">
-            <div class="card mb-5">
-                <div class="card-header">
-                    Basic Details
+    <form action="{{ url('place-order') }}" method="POST">
+        @csrf
+        <div class="row">
+            <!-- Card 1: Basic Details Form -->
+            <div class="col-md-6">
+                <div class="card mb-5">
+                    <div class="card-header">Basic Details</div>
+                    <div class="card-body">
+                        <div class="form-row d-flex gap-2">
+                            <div class="form-group col-md-6">
+                                <label for="fname" class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->name}}" id="fname" name="fname" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="lname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->lname}}" id="lname" name="lname" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-row d-flex gap-2">
+                            <div class="form-group col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" value="{{Auth::user()->email}}" id="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->phone}}" id="phone" name="phone" placeholder="Phone" required>
+                            </div>
+                        </div>
+                        <div class="form-row d-flex gap-2">
+                            <div class="form-group col-md-6">
+                                <label for="address1" class="form-label">Address 1</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->address1}}" id="address1" name="address1" placeholder="Address 1" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="address2" class="form-label">Address 2</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->address2}}" id="address2" name="address2" placeholder="Address 2">
+                            </div>
+                        </div>
+                        <div class="form-row d-flex gap-2">
+                            <div class="form-group col-md-6">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->city}}" id="city" name="city" placeholder="City" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="state" class="form-label">State</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->state}}" id="state" name="state" placeholder="State" required>
+                            </div>
+                        </div>
+                        <div class="form-row d-flex gap-2">
+                            <div class="form-group col-md-6">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->country}}" id="country" name="country" placeholder="Country" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="pincode" class="form-label">Pin Code</label>
+                                <input type="text" class="form-control" value="{{Auth::user()->pincode}}" id="pincode" name="pincode" placeholder="Pin Code" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    
-                        <div class="form-row d-flex gap-2">
-                            <div class="form-group col-md-6">
-                                <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" name='lname' placeholder="Last Name">
-                            </div>
-                        </div>
-                        <div class="form-row d-flex gap-2">
-                            <div class="form-group col-md-6">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="phoneNumber">Phone Number</label>
-                                <input type="text" class="form-control" id="phoneNumber" name='phone'  placeholder="Phone Number">
-                            </div>
-                        </div>
-                        <div class="form-row d-flex gap-2">
-                            <div class="form-group col-md-6">
-                                <label for="address1">Address 1</label>
-                                <input type="text" class="form-control" id="address1" name='address1' placeholder="Address 1">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="address2">Address 2</label>
-                                <input type="text" class="form-control" id="address2"  name='address2' placeholder="Address 2">
-                            </div>
-                        </div>
-                        <div class="form-row d-flex gap-2">
-                            <div class="form-group col-md-6">
-                                <label for="city">City</label>
-                                <input type="text" class="form-control" id="city"  name='city' placeholder="City">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="state">State</label>
-                                <input type="text" class="form-control" id="state"  name="state" placeholder="State">
-                            </div>
-                        </div>
-                        <div class="form-row d-flex gap-2">
-                            <div class="form-group col-md-6">
-                                <label for="country">Country</label>
-                                <input type="text" class="form-control" id="country" name="country" placeholder="Country">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="pinCode">Pin Code</label>
-                                <input type="text" class="form-control" id="pincode"  name="pinCode" placeholder="Pin Code">
-                            </div>
-                        </div>
-                       
+            </div>
+
+            <!-- Card 2: Product Details Table -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Order Details</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cartItems as $item)
+                                <tr>
+                                    <td>{{ $item->products->name }}</td>
+                                    <td>{{ $item->prod_qty }}</td>
+                                    <td>${{ $item->products->selling_price }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Card 2: Product Details Table -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    Order Details
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cartItems as $item)
-                                
-                          
-
-                            <tr>
-                                <td>{{$item->products->name}}</td>
-                                <td>{{$item->prod_qty}}</td>
-                                <td>${{$item->products->selling_price}}</td>
-                            </tr>
-                            @endforeach
-                            
-                        </tbody>
-                    </table>
-                    <button type="submit" class="btn btn-primary">Place Order</button>
-                </div>
-                
-            </div>
-            
-        </div>
-    </div>
-    
-</form>
+    </form>
 </div>
 
 

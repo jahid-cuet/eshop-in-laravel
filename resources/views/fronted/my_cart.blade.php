@@ -49,7 +49,7 @@
                </td>
                <td>
                 <input type="hidden" value="{{$cart->prod_id}}" class="prod_id">
-                @if ($cart->products->quantity > $cart->prod_qty)
+                @if ($cart->products->quantity >= $cart->prod_qty)
                 <div class="quantity-control mt-3 d-flex align-items-center">
                     <button class="btn btn-outline-secondary changeQuantity decrement">-</button>
                     <input type="text" class="quantity form-control text-center mx-2" value="{{$cart->prod_qty}}" readonly style="max-width: 60px;">
