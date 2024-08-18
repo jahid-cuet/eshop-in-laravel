@@ -18,7 +18,9 @@
     @include('fronted.nav')
 
     <div class="container">
+        @if($cartitems->count()>0)
         <h3 class='mb-4'>My Carts </h3>
+        
     
         <table class="table">
           <thead>
@@ -36,6 +38,8 @@
                 $total=0;
             @endphp
 
+      
+    
              @foreach ($cartitems as $cart)
             <tr class="ml-2 p-2">
               <td>
@@ -80,6 +84,13 @@
             <h4 class='mt-4'>Total Price : ${{$total}}</h4>
             <a href="checkout" class='btn btn-outline-success float-end mb-4'>Proceed to Checkout</a>
         </div>
+        @else
+
+        <div class='cart-body text-center m-4'>
+            <h2>Your <i class="fa fa-shopping-cart"></i>Cart is Empty</h2>
+            <a href="{{url('/front_category')}}" class="btn btn-outline-success ">Continue Shopping</a>
+        </div>
+        @endif
     </div>
 
 

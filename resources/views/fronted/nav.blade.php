@@ -16,6 +16,9 @@
                <li class="nav-item">
                 <a class="nav-link active"  href="{{ url('/my_cart') }}">My Cart</a>
             </li>
+               <li class="nav-item">
+                <a class="nav-link active"  href="{{ url('/my_order') }}">My Order</a>
+            </li>
                @endauth
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">

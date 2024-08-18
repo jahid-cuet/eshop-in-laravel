@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontedController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/my_cart',[CartController::class,'my_cart']);
     Route::get('/checkout',[CheckoutController::class,'checkout']);
     Route::post('/place-order',[CheckoutController::class,'placeorder']);
+    Route::get('/my_order',[OrderController::class,'my_order']);
+    Route::get('/view_order/{id}',[OrderController::class,'view_order']);
    
 });
 

@@ -21,9 +21,16 @@ class Order extends Model
         'state',
         'country',
         'pincode',
+        'total_price',
         'status',
         'message',
         'tracking_no',
 
     ];
+
+    
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

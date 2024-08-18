@@ -47,7 +47,13 @@ class CheckoutController extends Controller
             'country' => 'required|string|max:255',
             'pincode' => 'required|string|max:10',
         ]);
-
+ // Calculate Total Price
+        $total = '0';
+        $cartItems_total = Cart::where('user_id', Auth::id())->get();
+        foreach ($cartItems_total as $cart) {
+            $total += $cart->products->selling_price * $cart->prod_qty; 
+        }
+    
         $order = Order::create([
             'fname' => $request->fname,
             'user_id' => Auth::id(),
@@ -59,11 +65,19 @@ class CheckoutController extends Controller
             'city' => $request->city,
             'state' => $request->state,
             'country' => $request->country,
+            'total_price' => $total,
             'pincode' => $request->pincode,
+
             'status' => 0, // default status as pending
             'message' => $request->message,
             'tracking_no' => uniqid('TRACK'), // Generate a unique tracking number
+            
         ]);
+
+       
+     
+
+
 
         // Optionally handle the cart items association if needed
         // Assuming you have a cart_items table and a relationship defined in your Order model
