@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontedController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -77,5 +78,7 @@ require __DIR__.'/auth.php';
     Route::get('admin_view_order/{id}',[OrderController::class,'admin_view_order'])->name('admin_view_order');
     Route::post('update/{id}',[OrderController::class,'update'])->name('update');
     Route::get('order-history',[OrderController::class,'order_history'])->name('order-history');
+    Route::get('users',[UserController::class,'users'])->name('users');
+    Route::get('user_view/{id}',[UserController::class,'user_view']);
     
 });

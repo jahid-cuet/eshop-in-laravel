@@ -1,5 +1,7 @@
   <!-- Sidebar Navigation-->
   <nav id="sidebar">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- Sidebar Header-->
     <div class="sidebar-header d-flex align-items-center m-5">
         <div class="avatar"><img    width="300px" src="{{ asset('/admincss/img/jahid.jpg') }}" alt="..."
@@ -32,6 +34,7 @@
         </li>
         
         <li><a href="{{url('view_orders')}}"> <i class="icon-grid"></i>Orders</a></li>
+        <li><a href="{{url('users')}}"> <i class="fa-regular fa-user"></i></i>Users</a></li>
 
        </ul>
 </nav>
