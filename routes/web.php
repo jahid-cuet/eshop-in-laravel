@@ -72,5 +72,10 @@ require __DIR__.'/auth.php';
     Route::get('edit_product/{id}',[ProductController::class,'edit_product'])->name('edit_product');
     Route::post('update_product/{id}',[ProductController::class,'update_product'])->name('update_product');
     Route::get('delete_product/{id}',[ProductController::class,'delete_product'])->name('delete_product');
+
+    Route::get('view_orders',[OrderController::class,'view_orders'])->name('view_orders');
+    Route::get('admin_view_order/{id}',[OrderController::class,'admin_view_order'])->name('admin_view_order');
+    Route::post('update/{id}',[OrderController::class,'update'])->name('update');
+    Route::get('order-history',[OrderController::class,'order_history'])->name('order-history');
     
 });
