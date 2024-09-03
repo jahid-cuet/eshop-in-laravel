@@ -19,7 +19,7 @@ class FrontedController extends Controller
 
     {
         
-        $categories=Category::where('status','0')->take(15)->get();
+        $categories=Category::all();
         return view('fronted.front_category',compact('categories'));
     }
 

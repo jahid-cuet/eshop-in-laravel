@@ -48,8 +48,6 @@
                     @if ($product->quantity>0)
                     <a class="btn btn-primary m-4 addToCartBtn">Add to cart<i class="fa-solid fa-cart-shopping mx-1"></i></a>
                     @endif
-                  
-                    <a class="btn btn-secondary m-4">Add to Wishlist<i class="fas fa-heart mx-1"></i></a>
                 </div>
             </div>
         </div>

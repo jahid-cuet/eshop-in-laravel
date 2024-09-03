@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function view_orders()
 
     {
-        $orders=Order::where('status','0')->get();
+        $orders=Order::all();
         return view('admin.view_orders',compact('orders'));
     }
 
@@ -43,6 +43,7 @@ class OrderController extends Controller
             // Update the order status
             $order->status = $request->input('order-status');
             $order->save();
+            
             return redirect('view_orders')->with('status', 'Order updated successfully');
         } else {
             return redirect('view_orders')->with('error', 'Order not found');

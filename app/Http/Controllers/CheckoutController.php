@@ -16,16 +16,16 @@ class CheckoutController extends Controller
     {
 
         
-        $old_cartItems=Cart::where('user_id',Auth::id())->get();
-        foreach($old_cartItems as $cart)
-        {
+        // $old_cartItems=Cart::where('user_id',Auth::id())->get();
+        // foreach($old_cartItems as $cart)
+        // {
 
-            if(!Product::where('id',$cart->prod_id)->where('quantity','>=',$cart->prod_qty)->exists())
-            {
-            $removeItem=Cart::Where('user_id',Auth::id())->where('prod_id',$cart->prod_id)->first();
-            $removeItem->delete();
-            }
-            }
+        //     if(!Product::where('id',$cart->prod_id)->where('quantity','>=',$cart->prod_qty)->exists())
+        //     {
+        //     $removeItem=Cart::Where('user_id',Auth::id())->where('prod_id',$cart->prod_id)->first();
+        //     $removeItem->delete();
+        //     }
+        //     }
         $cartItems=Cart::where('user_id',Auth::id())->get();
 
        
@@ -35,6 +35,7 @@ class CheckoutController extends Controller
 
     public function placeorder(Request $request)
     {
+
         $request->validate([
             'fname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
@@ -46,8 +47,10 @@ class CheckoutController extends Controller
             'state' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'pincode' => 'required|string|max:10',
+
         ]);
  // Calculate Total Price
+
         $total = '0';
         $cartItems_total = Cart::where('user_id', Auth::id())->get();
         foreach ($cartItems_total as $cart) {
@@ -112,6 +115,39 @@ class CheckoutController extends Controller
 
         return redirect('/')->with('status', 'Order placed successfully!');
     }
+
+
+    public function RazorPay(Request $request)
+{
+    $cartItems = Cart::where('user_id', Auth::id())->get();
+    $total_price = 0;
+    foreach ($cartItems as $item) {
+        $total_price += $item->products->selling_price * $item->prod_qty;
+    }
+
+    $fname = $request->input('fname');
+    $lname = $request->input('lname');
+    $email = $request->input('email');
+    $phone = $request->input('phone');
+    $address1 = $request->input('address1');
+    $address2 = $request->input('address2');
+    $city = $request->input('city');
+    $state = $request->input('state');
+    $country = $request->input('country');
+    $pincode = $request->input('pincode');
+
+    return response()->json([
+        'total_price' => $total_price,  // Include total_price in the response
+        'fname' => $fname,
+        'lname' => $lname,
+        'email' => $email,
+        'phone' => $phone,
+        'address1' => $address1,
+        'address2' => $address2,
+        'city' => $city,
+        'state' => $state,
+        'country' => $country,
+        'pincode' => $pincode,
+    ]);
 }
-
-
+}

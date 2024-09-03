@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            
-                $table->string('total_price')->after('country');
+            $table->string('payment_status')->after('total_price')->default('cash on delivery');
         });
     }
 
@@ -23,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('total_price');
+            $table->dropColumn('payment_status');
         });
     }
 };

@@ -24,7 +24,8 @@
               <th scope="col">Order Date</th>
               <th scope="col">Tracking Number</th>
               <th scope="col">Total Price</th>
-              <th scope="col">Status</th>
+              <th scope="col">Order Status</th>
+              <th scope="col">Payment Status</th>
             
             </tr>
           </thead>
@@ -32,6 +33,7 @@
 
     
              @foreach ($orders as $order)
+             @if ($order->status=='0')
             <tr class="ml-2 p-2">
               <td>
                 <a>{{ date('d-m-Y',strtotime($order->created_at)) }}</a>
@@ -46,8 +48,12 @@
                 <a>{{ $order->status == '0' ?'pending':'completed'}}</a>
                </td>
               <td>
+                <a>{{ $order->payment_status}}</a>
+               </td>
+              <td>
                 <a href="{{ url('admin_view_order', $order->id) }}" class="btn btn-warning">Action</a>
                </td>
+               @endif
                @endforeach
             </tr>
           </tbody>

@@ -77,7 +77,7 @@
                                         <td>{{$item->qty}}</td>
                                         <td>{{$item->price}}</td>
                                         <td>
-                                            <img src="/pro/{{$item->products->image}}" style="height: 278px; width: auto;" alt="...">
+                                            <img src="/pro/{{$item->products->image}}" style="height: 100px; width:100px;" alt="...">
                                             
                                         </td>
                                     </tr>

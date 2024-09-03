@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontedController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -43,8 +44,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout',[CheckoutController::class,'checkout']);
     Route::post('/place-order',[CheckoutController::class,'placeorder']);
     Route::get('/my_order',[OrderController::class,'my_order']);
-    Route::get('/view_order/{id}',[OrderController::class,'view_order']);
-   
+    Route::get('view_order/{id}',[OrderController::class,'view_order']);
+    Route::post('/proceed-to-pay',[CheckoutController::class,'RazorPay']);
+   // Stripe Payment System
+Route::controller(PaymentController::class)->group(function(){
+    Route::get('stripe/{value}', 'stripe');
+    Route::post('stripe/{value}', 'stripePost')->name('stripe.post');
+});
 });
 
 

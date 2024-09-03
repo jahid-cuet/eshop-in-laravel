@@ -46,16 +46,16 @@
             <tr class="ml-2 p-2">
     
              <td>
-              <a href="" class="btn btn-primary">{{ $category->id }}</a>
+              {{ $category->id }}
              </td>
              <td>
-              <a href="" class="btn btn-primary">{{ $category->name }}</a>
+              {{ $category->name }}
              </td>
              <td>
-              <a href="" class="btn btn-primary">{{ $category->description }}</a>
+             {{ $category->description }}
              </td>
              <td>
-              <a href="" class="btn btn-primary">{{ $category->status }}</a>
+             {{ $category->status }}
              </td>
              <td>
                 <img height="100" width="100" src="/pro/{{$category->image}}" alt="image">

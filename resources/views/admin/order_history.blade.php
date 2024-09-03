@@ -27,35 +27,39 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Tracking Number</th>
+                                                <th scope="col">Products Name</th>
                                                 <th scope="col">Quantity</th>
                                                 <th scope="col"> Price</th>
-                                                <th scope="col">Order Status</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($order->orderItems as $item)
                                             <tr>
-                                                <td>{{ $order->tracking_no }}</td>
+                                                <td>{{ $item->products->name }}</td>
                                                 <td>{{ $item->qty }}</td>
                                                 <td>${{ number_format($item->price, 2) }}</td>
-                                                <td>
-                                                    <div>
-                                                        <form action="{{ url('update', $order->id) }}" method="POST">
-                                                            @csrf
-                                                            <select class="form-select" name="order-status">
-                                                                <option {{ $order->status == '0' ? 'selected' : '' }} value="0">Pending</option>
-                                                                <option {{ $order->status == '1' ? 'selected' : '' }} value="1">Completed</option>
-                                                            </select>
-                                                            <br>
-                                                            <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                              
                                             </tr>
                                             @endforeach
+
+
+                                
                                         </tbody>
+                                       
                                     </table>
+                                    <div>
+                                        <p>Order Status</p>
+                                        <form action="{{ url('update', $order->id) }}" method="POST">
+                                            @csrf
+                                            <select class="form-select" name="order-status">
+                                                <option {{ $order->status == '0' ? 'selected' : '' }} value="0">Pending</option>
+                                                <option {{ $order->status == '1' ? 'selected' : '' }} value="1">Completed</option>
+                                            </select>
+                                            <br>
+                                            <button type="submit" class="btn btn-primary btn-sm mx-2">Update</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
